@@ -98,6 +98,11 @@ for (let prodObj of products) {
 
 function displayByFilter(filteredProducts) {
   let productsGrid = document.getElementById("products-grid");
+  if (filteredProducts.length === 0) {
+    productsGrid.innerHTML =
+      "<h1 class='noProdFound'>No Products Found!!!</h1>";
+    return;
+  }
   productsGrid.innerHTML = "";
   for (let prodObj of filteredProducts) {
     let prodDiv = document.createElement("div");
@@ -122,8 +127,6 @@ const filterByCategoryButtons = [...document.querySelectorAll(".category")];
 let categoriesSelected = new Set();
 let priceRangeSelected = new Set();
 
-const sortButtons = [...document.querySelectorAll(".sort")];
-
 filterByCategoryButtons.forEach((btn, index, arr) => {
   btn.addEventListener("click", () => filterByCategory(btn, arr));
 });
@@ -136,14 +139,13 @@ function filterByCategory(btn, arr) {
     arr.forEach((btn) => btn.classList.remove("selected"));
     btn.classList.add("selected");
   } else {
-    categoriesSelected.delete("All");
     arr[0].classList.remove("selected");
     btn.classList.toggle("selected");
     btn.classList.contains("selected")
       ? categoriesSelected.add(btn.innerText)
       : categoriesSelected.delete(btn.innerText);
   }
-  applyFilters();
+  updatedProductsList();
 }
 
 const filterByPriceButtons = [...document.querySelectorAll(".price")];
@@ -160,32 +162,11 @@ function filterByPrice(btnEle) {
   btnEle.classList.contains("selected")
     ? priceRangeSelected.add(btnText)
     : priceRangeSelected.delete(btnText);
-  applyFilters();
+  updatedProductsList();
 }
 
-function applyFilters() {
-  let filteredProducts = [...products];
-
-  if (categoriesSelected.size > 0) {
-    filteredProducts = filteredProducts.filter((prod) =>
-      categoriesSelected.has(prod.category),
-    );
-  }
-
-  if (priceRangeSelected.size > 0) {
-    filteredProducts = filteredProducts.filter(
-      (prod) =>
-        (priceRangeSelected.has("Below 1000") && prod.price < 1000) ||
-        (priceRangeSelected.has("1000-3000") &&
-          prod.price >= 1000 &&
-          prod.price <= 3000) ||
-        (priceRangeSelected.has("Above 3000") && prod.price > 3000),
-    );
-  }
-
-  displayByFilter(filteredProducts);
-  return filteredProducts;
-}
+let sortSelected = new Set();
+const sortButtons = [...document.querySelectorAll(".sort")];
 
 sortButtons.forEach((btn, indx, arr) => {
   btn.addEventListener("click", () => sortProducts(btn, arr));
@@ -194,7 +175,6 @@ sortButtons.forEach((btn, indx, arr) => {
 function sortProducts(btnEle, btnsArr) {
   const dataVal = btnEle.getAttribute("data-val");
   btnEle.classList.toggle("selected");
-  let filteredProds = applyFilters();
 
   if (dataVal === "ascending") {
     btnsArr.forEach((btn) => {
@@ -204,11 +184,8 @@ function sortProducts(btnEle, btnsArr) {
     });
 
     if (btnEle.classList.contains("selected")) {
-      filteredProds = filteredProds.sort(
-        (prod1, prod2) => prod1.price - prod2.price,
-      );
-    } else {
-      filteredProds = applyFilters();
+      sortSelected.clear();
+      sortSelected.add("Ascending");
     }
   }
   if (dataVal === "descending") {
@@ -219,16 +196,16 @@ function sortProducts(btnEle, btnsArr) {
     });
 
     if (btnEle.classList.contains("selected")) {
-      filteredProds = filteredProds.sort(
-        (prod1, prod2) => prod2.price - prod1.price,
-      );
-    } else {
-      filteredProds = applyFilters();
+      sortSelected.clear();
+      sortSelected.add("Descending");
     }
   }
 
-  displayByFilter(filteredProds);
+  updatedProductsList();
 }
+
+let searchText = "";
+let searchFlag = false;
 
 const searchButton = document.querySelector("#btnS");
 
@@ -237,18 +214,56 @@ searchButton.addEventListener("click", () => searchByNameOrCategory());
 function searchByNameOrCategory() {
   const inputSearchBox = document.querySelector("#inputSearch");
   const inputVal = inputSearchBox.value.toLowerCase();
-  let searchResults = [];
-  console.log(inputVal);
-  let filteredProducts = applyFilters();
-  filteredProducts.forEach((prod) => {
-    if (
-      prod.productName.toLowerCase().includes(inputVal) ||
-      prod.category.toLowerCase().includes(inputVal)
-    ) {
-      searchResults.push(prod);
-    }
-  });
+  if (inputVal === "") {
+    searchFlag = false;
+    searchText = "";
+  } else {
+    searchFlag = true;
+    searchText = inputVal.toLowerCase();
+  }
+  updatedProductsList();
+}
 
-  displayByFilter(searchResults);
-  return searchResults;
+function updatedProductsList() {
+  let finalProdArr = [...products];
+  let tempArr = [];
+
+  if (searchFlag === true) {
+    finalProdArr.forEach((product) => {
+      if (
+        product.productName.toLowerCase().includes(searchText) ||
+        product.category.toLowerCase().includes(searchText)
+      ) {
+        tempArr.push(product);
+      }
+    });
+    finalProdArr = tempArr;
+  }
+
+  if (categoriesSelected.size > 0) {
+    finalProdArr = finalProdArr.filter((prod) =>
+      categoriesSelected.has(prod.category),
+    );
+  }
+
+  if (priceRangeSelected.size > 0) {
+    finalProdArr = finalProdArr.filter(
+      (prod) =>
+        (priceRangeSelected.has("Below 1000") && prod.price < 1000) ||
+        (priceRangeSelected.has("1000-3000") &&
+          prod.price >= 1000 &&
+          prod.price <= 3000) ||
+        (priceRangeSelected.has("Above 3000") && prod.price > 3000),
+    );
+  }
+
+  if (sortSelected.size > 0) {
+    if (sortSelected.has("Ascending")) {
+      finalProdArr = [...finalProdArr].sort((p1, p2) => p1.price - p2.price);
+    } else {
+      finalProdArr = [...finalProdArr].sort((p1, p2) => p2.price - p1.price);
+    }
+  }
+
+  displayByFilter(finalProdArr);
 }
