@@ -88,8 +88,8 @@ for (let prodObj of products) {
                     <p class="pcatg">${prodObj.category}</p>
                     <p class="pprice">INR ${prodObj.price}</p>
                     <div class="p-btns">
-                    <button class="pbtn">Add to cart</button>
-                    <button class="pbtn">Buy Now</button>
+                    <button class="pbtn addToCart"  data-val="${prodObj.id}">Add to cart</button>
+                    <button class="pbtn buyNow">Buy Now</button>
                     </div>
                     `;
 
@@ -113,8 +113,8 @@ function displayByFilter(filteredProducts) {
                     <p class="pcatg">${prodObj.category}</p>
                     <p class="pprice">INR ${prodObj.price}</p>
                     <div class="p-btns">
-                    <button class="pbtn">Add to cart</button>
-                    <button class="pbtn">Buy Now</button>
+                    <button class="pbtn addToCart"  data-val="${prodObj.id}">Add to cart</button>
+                    <button class="pbtn buyNow" >Buy Now</button>
                     </div>
                     `;
 
@@ -267,3 +267,87 @@ function updatedProductsList() {
 
   displayByFilter(finalProdArr);
 }
+
+const clearFilterBtn = document.querySelector(".clearFilters");
+
+clearFilterBtn.addEventListener("click", () => {
+  const allFilterBtns = [...document.querySelectorAll(".f-btn")];
+  allFilterBtns.forEach((btn) => {
+    btn.classList.remove("selected");
+    categoriesSelected.clear();
+    priceRangeSelected.clear();
+    sortSelected.clear();
+  });
+  updatedProductsList();
+});
+
+const productsCartDialogBox = document.querySelector("#cartDialog");
+const cartItemCountBtn = document.querySelector("#itemCount");
+const addToCartBtns = [...document.querySelectorAll(".addToCart")];
+const addToCartIconImg = document.querySelector("#addToCartImg");
+
+cartItemCountBtn.innerHTML = JSON.parse(
+  localStorage.getItem("cartItems"),
+).length;
+
+addToCartBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    let productsAddedToCart;
+    const localStorageCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (localStorageCartItems === null) {
+      productsAddedToCart = [];
+    } else {
+      productsAddedToCart = localStorageCartItems;
+    }
+
+    const productID = +btn.getAttribute("data-val");
+
+    if (!productsAddedToCart.includes(productID)) {
+      productsAddedToCart.push(productID);
+      alert("Product added to cart successfully!");
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(productsAddedToCart));
+  });
+});
+
+addToCartIconImg.addEventListener("click", () => {
+  productsCartDialogBox.showModal();
+  const productsAddedInCart = JSON.parse(localStorage.getItem("cartItems"));
+  productsCartDialogBox.innerHTML = ``;
+  products.forEach((prod) => {
+    if (productsAddedInCart.includes(prod.id)) {
+      const divEle = document.createElement("div");
+      divEle.classList.add("cartDiv");
+      divEle.innerHTML = `
+                          <img src="${prod.img}" alt="product image" class="cartProdImg"/>
+                          <p class="cartProdName">${prod.productName}<p>
+                          <p class="priceText">Price per product</p>
+                          <p class="cartProdPrice">₹ ${prod.price}</p>
+                          <p class="prodQuantity"> Quantity:
+                          <button id="qtyMinus">-</button>
+                          <span id="qtyInNumber">1</span>
+                          <button id="qtyPlus">+</button>
+                          </p>
+                          <a href="#" class="removeItem" data-prodId="${prod.id}">Remove item</a>
+                          <hr id="hRuler">
+                         `;
+      productsCartDialogBox.appendChild(divEle);
+    }
+  });
+
+  const totalAmountDiv = document.createElement("div");
+  totalAmountDiv.classList.add("totalAmountDiv");
+  totalAmountDiv.innerHTML = "Total Amount = <strong>₹ 7000</strong>";
+  productsCartDialogBox.appendChild(totalAmountDiv);
+
+  const newBtn = document.createElement("button");
+  newBtn.id = "closeCart";
+  newBtn.innerText = "Close";
+  productsCartDialogBox.appendChild(newBtn);
+  const closeCartDialogBtn = document.querySelector("#closeCart");
+
+  closeCartDialogBtn.addEventListener("click", () => {
+    productsCartDialogBox.close();
+  });
+});

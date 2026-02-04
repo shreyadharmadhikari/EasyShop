@@ -44,14 +44,16 @@
                 <img src="search-icon.png" alt="search" id="searchButton" />
               </button>
             </div>
-
-            <button id="addToCart">
-              <img
-                src="shopping-bag-white-icon.png"
-                alt="add to cart"
-                id="addToCartImg"
-              />
-            </button>
+            <div>
+              <button id="addToCart">
+                <p id="itemCount"></p>
+                <img
+                  src="shopping-bag-white-icon.png"
+                  alt="add to cart"
+                  id="addToCartImg"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -92,9 +94,15 @@
             </button>
           </div>
         </div>
+        <div class="clear-Filters">
+          <button class="clearFilters">Clear All Filters</button>
+        </div>
       </section>
       <section id="products-grid"></section>
+
+      <dialog id="cartDialog"></dialog>
     </main>
+
     <footer></footer>
 
     <script src="script.js" async></script>
