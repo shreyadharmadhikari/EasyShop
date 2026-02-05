@@ -285,29 +285,32 @@ const productsCartDialogBox = document.querySelector("#cartDialog");
 const cartItemCountBtn = document.querySelector("#itemCount");
 const addToCartBtns = [...document.querySelectorAll(".addToCart")];
 const addToCartIconImg = document.querySelector("#addToCartImg");
-
-cartItemCountBtn.innerHTML = JSON.parse(
-  localStorage.getItem("cartItems"),
+cartItemCountBtn.innerText = Object.entries(
+  JSON.parse(localStorage.getItem("cartItems")),
 ).length;
+
+console.log(JSON.parse(localStorage.getItem("cartItems")));
+// localStorage.setItem("cartItems", JSON.stringify({}));
 
 addToCartBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    let productsAddedToCart;
+    let productToAddInCart;
     const localStorageCartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (localStorageCartItems === null) {
-      productsAddedToCart = [];
+      productToAddInCart = {};
     } else {
-      productsAddedToCart = localStorageCartItems;
+      productToAddInCart = localStorageCartItems;
     }
 
     const productID = +btn.getAttribute("data-val");
 
-    if (!productsAddedToCart.includes(productID)) {
-      productsAddedToCart.push(productID);
+    if (!productToAddInCart[productID]) {
+      productToAddInCart[productID] = 1;
       alert("Product added to cart successfully!");
     }
 
-    localStorage.setItem("cartItems", JSON.stringify(productsAddedToCart));
+    localStorage.setItem("cartItems", JSON.stringify(productToAddInCart));
+    cartItemCountBtn.innerText = Object.entries(productToAddInCart).length;
   });
 });
 
@@ -315,19 +318,21 @@ addToCartIconImg.addEventListener("click", () => {
   productsCartDialogBox.showModal();
   const productsAddedInCart = JSON.parse(localStorage.getItem("cartItems"));
   productsCartDialogBox.innerHTML = ``;
+
   products.forEach((prod) => {
-    if (productsAddedInCart.includes(prod.id)) {
+    if (productsAddedInCart[prod.id]) {
       const divEle = document.createElement("div");
       divEle.classList.add("cartDiv");
+      divEle.id = `cartDiv-${prod.id}`;
       divEle.innerHTML = `
                           <img src="${prod.img}" alt="product image" class="cartProdImg"/>
                           <p class="cartProdName">${prod.productName}<p>
                           <p class="priceText">Price per product</p>
                           <p class="cartProdPrice">₹ ${prod.price}</p>
                           <p class="prodQuantity"> Quantity:
-                          <button id="qtyMinus">-</button>
-                          <span id="qtyInNumber">1</span>
-                          <button id="qtyPlus">+</button>
+                          <button class="qtyMinus" data-val="${prod.id}">-</button>
+                          <span class="qtyInNumber  qtyNum${prod.id}">${productsAddedInCart[prod.id]}</span>
+                          <button class="qtyPlus" data-val="${prod.id}">+</button>
                           </p>
                           <a href="#" class="removeItem" data-prodId="${prod.id}">Remove item</a>
                           <hr id="hRuler">
@@ -338,7 +343,20 @@ addToCartIconImg.addEventListener("click", () => {
 
   const totalAmountDiv = document.createElement("div");
   totalAmountDiv.classList.add("totalAmountDiv");
-  totalAmountDiv.innerHTML = "Total Amount = <strong>₹ 7000</strong>";
+
+  let total = 0;
+
+  let prodIdQtyPairs = Object.entries(productsAddedInCart);
+  console.log(prodIdQtyPairs);
+
+  prodIdQtyPairs.forEach(([prodId, prodQuantity]) => {
+    console.log(prodId, prodQuantity);
+    const prodPrice = products.filter((prod) => prod.id === +prodId)[0].price;
+    const totalPriceOfProduct = prodPrice * prodQuantity;
+    total += totalPriceOfProduct;
+  });
+
+  totalAmountDiv.innerHTML = `Total Amount = <strong>₹ ${total}</strong>`;
   productsCartDialogBox.appendChild(totalAmountDiv);
 
   const newBtn = document.createElement("button");
@@ -349,5 +367,81 @@ addToCartIconImg.addEventListener("click", () => {
 
   closeCartDialogBtn.addEventListener("click", () => {
     productsCartDialogBox.close();
+  });
+
+  const qtyPlusButtons = [...document.querySelectorAll(".qtyPlus")];
+  const qtyMinusButtons = [...document.querySelectorAll(".qtyMinus")];
+  const removeItemLinks = [...document.querySelectorAll(".removeItem")];
+
+  removeItemLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const prodId = +link.getAttribute("data-prodId");
+      delete productsAddedInCart[prodId];
+      const divEle = document.getElementById(`cartDiv-${prodId}`);
+      productsCartDialogBox.removeChild(divEle);
+      localStorage.setItem("cartItems", JSON.stringify(productsAddedInCart));
+    });
+  });
+
+  qtyPlusButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const productID = +btn.getAttribute("data-val");
+      let prodQuantity = productsAddedInCart[productID];
+      if (prodQuantity < 6) {
+        prodQuantity += 1;
+      } else {
+        alert("Maximum 6 items can be added at one time for any product!");
+      }
+      productsAddedInCart[productID] = prodQuantity;
+      localStorage.setItem("cartItems", JSON.stringify(productsAddedInCart));
+      const quantityNumSpan = document.querySelector(`.qtyNum${productID}`);
+      quantityNumSpan.innerText = prodQuantity;
+      let total = 0;
+
+      let prodIdQtyPairs = Object.entries(productsAddedInCart);
+      console.log(prodIdQtyPairs);
+
+      prodIdQtyPairs.forEach(([prodId, prodQuantity]) => {
+        console.log(prodId, prodQuantity);
+        const prodPrice = products.filter((prod) => prod.id === +prodId)[0]
+          .price;
+        const totalPriceOfProduct = prodPrice * prodQuantity;
+        total += totalPriceOfProduct;
+      });
+      totalAmountDiv.innerHTML = `Total Amount = <strong>₹ ${total}</strong>`;
+    });
+  });
+
+  qtyMinusButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const productID = +btn.getAttribute("data-val");
+      let prodQuantity = productsAddedInCart[productID];
+      if (prodQuantity === 1) {
+        delete productsAddedInCart[productID];
+        const divEle = document.getElementById(`cartDiv-${productID}`);
+        productsCartDialogBox.removeChild(divEle);
+      } else {
+        prodQuantity -= 1;
+        productsAddedInCart[productID] = prodQuantity;
+        const quantityNumSpan = document.querySelector(`.qtyNum${productID}`);
+        quantityNumSpan.innerText = prodQuantity;
+      }
+
+      let total = 0;
+
+      let prodIdQtyPairs = Object.entries(productsAddedInCart);
+      console.log(prodIdQtyPairs);
+
+      prodIdQtyPairs.forEach(([prodId, prodQuantity]) => {
+        console.log(prodId, prodQuantity);
+        const prodPrice = products.filter((prod) => prod.id === +prodId)[0]
+          .price;
+        const totalPriceOfProduct = prodPrice * prodQuantity;
+        total += totalPriceOfProduct;
+      });
+      totalAmountDiv.innerHTML = `Total Amount = <strong>₹ ${total}</strong>`;
+      localStorage.setItem("cartItems", JSON.stringify(productsAddedInCart));
+    });
   });
 });

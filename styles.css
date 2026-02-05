@@ -335,7 +335,7 @@ body {
 }
 
 #cartDialog {
-  position: fixed; /* keep this */
+  position: relative; /* keep this */
   top: 4rem;
   left: 48%;
   width: 50%;
@@ -348,7 +348,7 @@ body {
 }
 
 .totalAmountDiv {
-  position: sticky; /* ⭐ key */
+  position: absolute; /* ⭐ key */
   bottom: 2rem;
   width: 100%;
   text-align: center;
@@ -363,7 +363,7 @@ body {
 }
 
 #closeCart {
-  position: sticky; /* ⭐ key */
+  position: absolute; /* ⭐ key */
   display: block;
   bottom: 0px;
   width: 100%;
@@ -416,6 +416,7 @@ body {
   cursor: pointer;
   font-size: 14px;
   color: #ff771c;
+  display: inline-block;
 }
 
 .priceText {
@@ -433,8 +434,8 @@ body {
   font-size: 1.2rem;
 }
 
-#qtyMinus,
-#qtyPlus {
+.qtyMinus,
+.qtyPlus {
   width: 20px;
   height: 20px;
   background-color: #f2f2f2;
