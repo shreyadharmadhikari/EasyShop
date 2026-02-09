@@ -168,8 +168,8 @@ body {
 .products-price,
 .products-sorting {
   margin: 0rem 1rem;
-  border: 1px solid #e9e9e9;
-  border-radius: 10px;
+  border: 1px solid #eeeeee;
+  border-radius: 0px;
 }
 
 #fCat,
@@ -339,27 +339,32 @@ body {
   top: 4rem;
   left: 48%;
   width: 50%;
-  height: 78%;
-  border: 1px solid #8f9193;
+  height: 82%;
+  max-height: 500px;
+  border: 2px solid #bbbdbe;
   border-radius: 3px;
   outline: none;
-  overflow-y: auto; /* important */
   background-color: #fff;
 }
 
-.totalAmountDiv {
-  position: absolute; /* ⭐ key */
-  bottom: 2rem;
-  width: 100%;
-  text-align: center;
-  height: 2.4rem;
-  color: #000;
-  border: none;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-  display: block;
-  background-color: #edebeb;
+#productsInCartContainerDiv {
+  padding: 0;
+  margin: 2px;
+  width: 98%;
+  height: 92%;
+  max-height: 440px;
+  overflow-y: scroll;
+}
+
+.cartDiv {
+  box-sizing: border-box;
+  display: grid;
+  width: 98%;
+  height: 140px;
+  grid-template-columns: 140px 1fr 1fr 110px;
+  grid-template-rows: repeat(3, 1fr);
+  margin: 0px 1rem;
+  padding: 10px 0px;
 }
 
 #closeCart {
@@ -373,20 +378,35 @@ body {
   color: #000;
   border: none;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
 }
 
-.cartDiv {
-  box-sizing: border-box;
-  display: grid;
-  width: 98%;
-  height: 140px;
-  grid-template-columns: 140px 1fr 1fr 110px;
-  grid-template-rows: repeat(3, 1fr);
-  margin: 0px 1rem;
-  padding: 10px 0px;
+#placeOrder {
+  position: absolute; /* ⭐ key */
+  display: block;
+  bottom: 2rem;
+  width: 100%;
+  padding: 5px 0px;
+  text-align: center;
+  height: fit-content;
+  background-color: #fff;
+  color: #13b60d;
+  border: 1px solid #13b60d;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#placeOrder:hover {
+  background-color: #ddf8dd;
+}
+
+.disabled-btn {
+  pointer-events: none;
+  opacity: 0.6; /* optional */
 }
 
 .cartProdImg {

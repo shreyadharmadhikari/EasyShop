@@ -1,9 +1,1 @@
-`
-                        <img src=${prod.img} alt="product image" class="cartProdImg"/>
-                        <p class="cartProdName">${prod.productName}</p>
-                        <p class="cartProdPrice">₹ ${prod.price}</p>
-                        <p class="prodQuantity">Quantity: ${prodQty}</p>
-                        `
-
-
-    cartProdDiv.classList.add("cartDiv");
+Good Fonts : PT Sans, sans-serif;
