@@ -24,6 +24,12 @@
     />
 
     <link rel="stylesheet" href="styles.css" />
+    <link
+      type="image/png"
+      sizes="120x120"
+      rel="icon"
+      href=".../icons8-menu-ios_filled-120.png"
+    />
   </head>
   <body>
     <header>
@@ -33,36 +39,40 @@
             <img src="assets/logo.png" alt="logo" id="logoImage" />
             <h1 id="companyName">EasyShop</h1>
           </div>
-          <div id="searchAndCart">
-            <div id="searchBar">
-              <input
-                type="search"
-                placeholder="Search Products/Categories"
-                id="inputSearch"
+          <div id="searchBar">
+            <input
+              type="search"
+              placeholder="Search Products/Categories"
+              id="inputSearch"
+            />
+            <button id="btnS">
+              <img
+                src="assets/search-icon.png"
+                alt="search"
+                id="searchButton"
               />
-              <button id="btnS">
-                <img
-                  src="assets/search-icon.png"
-                  alt="search"
-                  id="searchButton"
-                />
-              </button>
-            </div>
-            <div>
-              <button id="addToCart">
-                <p id="itemCount"></p>
-                <img
-                  src="assets/shopping-bag-white-icon.png"
-                  alt="add to cart"
-                  id="addToCartImg"
-                />
-              </button>
-            </div>
+            </button>
+          </div>
+          <div>
+            <button id="addToCart">
+              <p id="itemCount"></p>
+              <img
+                src="assets/shopping-bag-white-icon.png"
+                alt="add to cart"
+                id="addToCartImg"
+              />
+            </button>
           </div>
         </div>
       </nav>
     </header>
     <main>
+      <img
+        src="assets/menu.png"
+        alt="menu"
+        id="hamburger-icon"
+        class="active"
+      />
       <section id="product-filters">
         <div>
           <p id="fCat">Filter by category</p>
@@ -82,7 +92,6 @@
             <button class="f-btn price">Above 3000</button>
           </div>
         </div>
-
         <div>
           <p id="sPrice">Sort by Price</p>
           <div class="products-sorting">
@@ -111,5 +120,6 @@
 
     <script src="assets/productData.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="sidebar.js"></script>
   </body>
 </html>
