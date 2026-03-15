@@ -35,24 +35,33 @@
     <header>
       <nav>
         <div id="navBar">
+          <img
+            src="assets/menu.png"
+            alt="menu"
+            id="hamburger-icon"
+            class="active"
+          />
           <div id="companyNameLogo">
             <img src="assets/logo.png" alt="logo" id="logoImage" />
             <h1 id="companyName">EasyShop</h1>
           </div>
-          <div id="searchBar">
-            <input
-              type="search"
-              placeholder="Search Products/Categories"
-              id="inputSearch"
-            />
-            <button id="btnS">
-              <img
-                src="assets/search-icon.png"
-                alt="search"
-                id="searchButton"
+          <div class="search-container">
+            <div id="searchBar">
+              <input
+                type="search"
+                placeholder="Search Products/Categories"
+                id="inputSearch"
               />
-            </button>
+              <button id="btnS">
+                <img
+                  src="assets/search-icon.png"
+                  alt="search"
+                  id="searchButton"
+                />
+              </button>
+            </div>
           </div>
+
           <div>
             <button id="addToCart">
               <p id="itemCount"></p>
@@ -67,12 +76,6 @@
       </nav>
     </header>
     <main>
-      <img
-        src="assets/menu.png"
-        alt="menu"
-        id="hamburger-icon"
-        class="active"
-      />
       <section id="product-filters">
         <div>
           <p id="fCat">Filter by category</p>
@@ -116,6 +119,7 @@
       <dialog id="cartDialog"></dialog>
     </main>
 
+    <div id="overlay"></div>
     <footer></footer>
 
     <script src="assets/productData.js" defer></script>

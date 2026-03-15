@@ -71,6 +71,70 @@ let products = [
   {
     id: 110,
     productName:
+      "ARTISTRO 12 Glitter Paint Pens for Glass Marking, Rock Painting, Ceramic, Wood, Fabric, Scrapbooking, DIY Craft Making, Coloring - Acrylic Paint Markers Extra-Fine",
+    category: "Stationary",
+    price: 1900,
+    img: "https://m.media-amazon.com/images/I/61Acn+MNYAL._AC_SX569_.jpg",
+  },
+
+  {
+    id: 111,
+    productName: "AirPods Max wide shot",
+    category: "Electronics",
+    price: 1705,
+    img: "https://images.unsplash.com/photo-1625245488600-f03fef636a3c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3ZlciUyMHRoZSUyMGVhcnMlMjBoZWFkcGhvbmUlMjB3aXRoJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+  },
+  {
+    id: 112,
+    productName:
+      "Ddaowanx Gel Pens, 6 Pcs 0.5mm Quick Dry Black Ink Pens Fine Point Smooth Writing Pens, Cute Office School Supplies Gifts for Women",
+    category: "Stationary",
+    price: 1280,
+    img: "https://m.media-amazon.com/images/I/61mcgT64xQL._AC_UL320_.jpg",
+  },
+  {
+    id: 113,
+    productName:
+      "Summer Fridays Tinted Lip Butter Balm - Conditioning Vegan Lip Balm for Instant Moisture, Shine & Hydration - Sheer-Tinted",
+    category: "Beauty / Cosmetics",
+    price: 1920,
+    img: "https://m.media-amazon.com/images/I/51HqvytLPBL._AC_UY218_.jpg",
+  },
+  {
+    id: 114,
+    productName:
+      "JMIERR Mens Casual Polo Shirt Summer Short Sleeve Vacation Button Beach Knit Stretchy Golf Shirts",
+    category: "Clothing",
+    price: 1200,
+    img: "https://m.media-amazon.com/images/I/71tp4B1QenL._AC_SX522_.jpg",
+  },
+  {
+    id: 115,
+    productName:
+      "WOOSEA Women's High Neck Split Bodycon Mermaid Evening Cocktail Long Dress",
+    category: "Clothing",
+    price: 7800,
+    img: "https://m.media-amazon.com/images/I/61+PeVsOHbL._AC_SY679_.jpg",
+  },
+  {
+    id: 116,
+    productName:
+      "GRACE KARIN Womens Summer Tops Elegant Dressy 2026 Peplum Wrap Top V Neck Puff Short Sleeve Blouses Trendy Fashion Clothes",
+    category: "Clothing",
+    price: 3000,
+    img: "https://m.media-amazon.com/images/I/61Jw71fOzFL._AC_SX569_.jpg",
+  },
+  {
+    id: 117,
+    productName:
+      "Erborian CC Cream Color Correcting SPF 25, Tone-Evening Korean Skincare Makeup Hybrid, Moisturizes, Lightweight, Blurs Skin, Natural",
+    category: "Beauty / Cosmetics",
+    price: 2100,
+    img: "https://m.media-amazon.com/images/I/71MnKftM5EL._AC_UL320_.jpg",
+  },
+  {
+    id: 118,
+    productName:
       "dotn Portable Bluetooth Speaker, 2026 Bluetooth 5.4 Wireless Speaker",
     category: "Electronics",
     price: 1705,

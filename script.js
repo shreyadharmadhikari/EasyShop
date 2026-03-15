@@ -205,7 +205,7 @@ clearFilterBtn.addEventListener("click", () => {
 
 const productsCartDialogBox = document.querySelector("#cartDialog");
 const cartItemCountBtn = document.querySelector("#itemCount");
-const addToCartIconImg = document.querySelector("#addToCartImg");
+const addToCartIconImg = document.querySelector("#addToCart");
 cartItemCountBtn.innerText = Object.entries(
   JSON.parse(localStorage.getItem("cartItems")),
 ).length;

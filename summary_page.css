@@ -166,3 +166,136 @@ body {
   padding: 1rem;
   font-weight: 400;
 }
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  #summary-container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    margin: 1rem auto;
+    gap: 0.8rem;
+  }
+
+  #itemsList {
+    width: 100%;
+    max-height: fit-content;
+  }
+
+  #productsContainer {
+    height: 48vh;
+    overflow-y: scroll;
+  }
+
+  .prodDiv {
+    grid-template-columns: 100px 1fr 80px;
+    grid-template-rows: repeat(4, auto);
+    height: auto;
+    min-height: 140px;
+    padding: 8px;
+  }
+
+  .prodImage {
+    height: 100px;
+    padding: 0.4rem;
+    margin-right: 0.5rem;
+  }
+
+  .prodName {
+    padding: 0.4rem;
+    font-size: 1rem;
+    margin-left: 0.4rem;
+  }
+
+  .prodQuantity {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+  }
+
+  .prodPrice {
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+
+  #itemsListHeader {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  #priceP {
+    margin-right: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  #priceDetails {
+    width: 100%;
+    height: max-content;
+    margin-bottom: 1rem;
+  }
+
+  #priceDetailsHeader {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .priceDiv {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  #subtotalText,
+  #subtotalValue {
+    font-size: 1.2rem;
+  }
+
+  #confirmOrderBtn {
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    width: 90%;
+    margin: 0.8rem auto;
+  }
+
+  #orderConfirmed {
+    left: 5%;
+    width: 90%;
+    top: 10%;
+    font-size: 1.1rem;
+    padding: 3rem 1.8rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .prodDiv {
+    grid-template-columns: 80px 1fr 70px;
+    min-height: 120px;
+  }
+
+  .prodImage {
+    height: 90px;
+  }
+
+  .prodName {
+    font-size: 0.9rem;
+  }
+
+  .prodQuantity,
+  .prodPrice {
+    font-size: 0.85rem;
+  }
+
+  #itemsListHeader,
+  #priceDetailsHeader {
+    font-size: 1.1rem;
+  }
+
+  .priceDiv {
+    font-size: 0.95rem;
+  }
+
+  #subtotalText,
+  #subtotalValue {
+    font-size: 1.1rem;
+  }
+}
