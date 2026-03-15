@@ -395,6 +395,7 @@ function dialogBoxEventListeners() {
         delete productsAddedInCart[productID];
         const divEle = document.getElementById(`cartDiv-${productID}`);
         productsInCartContainerDiv.removeChild(divEle);
+        localStorage.setItem("cartItems", JSON.stringify(productsAddedInCart));
       } else {
         prodQuantity -= 1;
         productsAddedInCart[productID] = prodQuantity;
