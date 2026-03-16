@@ -96,6 +96,7 @@ This project was built to practice and demonstrate core frontend development con
 ![Mobile](screenshots/mobile-search.png)
 ![Mobile](screenshots/mobile-sidebar.png)
 ![Mobile](screenshots/mobile-cart.png)
+![Mobile](screenshots/mobile-summary.png)
 
 ---
 
