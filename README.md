@@ -79,25 +79,42 @@ This project was built to practice and demonstrate core frontend development con
 - Responsive layout design
 
 ---
-
 ## Screenshots
 
-#### Homepage
-![Homepage](screenshots/home-page.png)
+### Homepage
+<p align="center">
+  <img src="screenshots/home-page.png" width="400"/>
+  <img src="screenshots/filters.png" width="400"/>
+</p>
 
-#### Cart Modal
-![Cart](screenshots/cart.png)
+<p align="center">
+  <img src="screenshots/addedToCart.png" width="400"/>
+  <img src="screenshots/search.png" width="400"/>
+</p>
 
-#### Summart Page
-![Summary](screenshots/summary-page.png)
+### Cart Modal
+<p align="center">
+  <img src="screenshots/cart.png" width="450"/>
+</p>
 
-#### Mobile View
-![Mobile](screenshots/mobile-homepage.png)
-![Mobile](screenshots/mobile-search.png)
-![Mobile](screenshots/mobile-sidebar.png)
-![Mobile](screenshots/mobile-cart.png)
-![Mobile](screenshots/mobile-summary.png)
+### Summary Page
+<p align="center">
+  <img src="screenshots/summary-page.png" width="450"/>
+</p>
 
+### Mobile View
+<p align="center">
+  <img src="screenshots/mobile-homepage.png" width="220"/>
+  <img src="screenshots/mobile-search.png" width="220"/>
+  <img src="screenshots/mobile-sidebar.png" width="220"/>
+</p>
+
+<p align="center">
+  <img src="screenshots/mobile-cart.png" width="220"/>
+  <img src="screenshots/mobile-summary.png" width="220"/>
+</p>
+
+---
 ---
 
 ## Future Improvements
