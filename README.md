@@ -79,13 +79,42 @@ This project was built to practice and demonstrate core frontend development con
 - Responsive layout design
 
 ---
-
 ## Screenshots
 
+### Homepage
+<p align="center">
+  <img src="screenshots/home-page.png" width="400"/>
+  <img src="screenshots/filters.png" width="400"/>
+</p>
 
+<p align="center">
+  <img src="screenshots/addedToCart.png" width="400"/>
+  <img src="screenshots/search.png" width="400"/>
+</p>
 
+### Cart Modal
+<p align="center">
+  <img src="screenshots/cart.png" width="450"/>
+</p>
 
+### Summary Page
+<p align="center">
+  <img src="screenshots/summary-page.png" width="450"/>
+</p>
 
+### Mobile View
+<p align="center">
+  <img src="screenshots/mobile-homepage.png" height="420"/>
+  <img src="screenshots/mobile-search.png" height="420"/>
+  <img src="screenshots/mobile-sidebar.png" height="420"/>
+</p>
+
+<p align="center">
+  <img src="screenshots/mobile-cart.png" height="420"/>
+  <img src="screenshots/mobile-summary.png" height="420"/>
+</p>
+
+---
 ---
 
 ## Future Improvements
