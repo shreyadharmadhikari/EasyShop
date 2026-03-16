@@ -146,6 +146,25 @@ function searchByNameOrCategory() {
   updatedProductsList();
 }
 
+const toastEle = document.getElementById("toast");
+
+function showProdAddedToast(msg) {
+  toastEle.textContent = msg;
+  toastEle.classList.add("showAdded");
+
+  setTimeout(() => {
+    toastEle.classList.remove("showAdded");
+  }, 2000);
+}
+function showAlreadyPresentToast(msg) {
+  toastEle.textContent = msg;
+  toastEle.classList.add("showAlready");
+
+  setTimeout(() => {
+    toastEle.classList.remove("showAlready");
+  }, 2000);
+}
+
 function updatedProductsList() {
   let finalProdArr = [...products];
   let tempArr = [];
@@ -229,9 +248,9 @@ function attachAddToCartEventListener() {
 
       if (!productToAddInCart[productID]) {
         productToAddInCart[productID] = 1;
-        alert("Product added to cart successfully!");
+        showProdAddedToast("Product added to cart successfully!");
       } else {
-        alert("Product is already present in cart!");
+        showAlreadyPresentToast("Product is already present in cart!");
       }
 
       localStorage.setItem("cartItems", JSON.stringify(productToAddInCart));
