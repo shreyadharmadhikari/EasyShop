@@ -82,14 +82,20 @@ This project was built to practice and demonstrate core frontend development con
 
 ## Screenshots
 
-### Homepage
+#### Homepage
 ![Homepage](screenshots/home-page.png)
 
-### Cart Modal
+#### Cart Modal
 ![Cart](screenshots/cart.png)
 
-### Mobile View
+#### Summart Page
+![Summary](screenshots/summary-page.png)
+
+#### Mobile View
 ![Mobile](screenshots/mobile-homepage.png)
+![Mobile](screenshots/mobile-search.png)
+![Mobile](screenshots/mobile-sidebar.png)
+![Mobile](screenshots/mobile-cart.png)
 
 ---
 
