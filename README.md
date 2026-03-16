@@ -104,14 +104,14 @@ This project was built to practice and demonstrate core frontend development con
 
 ### Mobile View
 <p align="center">
-  <img src="screenshots/mobile-homepage.png" width="220"/>
-  <img src="screenshots/mobile-search.png" width="220"/>
-  <img src="screenshots/mobile-sidebar.png" width="220"/>
+  <img src="screenshots/mobile-homepage.png" height="420"/>
+  <img src="screenshots/mobile-search.png" height="420"/>
+  <img src="screenshots/mobile-sidebar.png" height="420"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/mobile-cart.png" width="220"/>
-  <img src="screenshots/mobile-summary.png" width="220"/>
+  <img src="screenshots/mobile-cart.png" height="420"/>
+  <img src="screenshots/mobile-summary.png" height="420"/>
 </p>
 
 ---
