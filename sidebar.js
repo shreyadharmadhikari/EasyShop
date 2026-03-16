@@ -12,15 +12,19 @@ hambMenu.addEventListener("click", () => {
   searchContainer.classList.toggle("hide");
 
   if (hambMenu.classList.contains("active")) {
+    hambMenu.classList.remove("active");
     hambMenu.src = "assets/close.png";
   } else {
+    hambMenu.classList.add("active");
     hambMenu.src = "assets/menu.png";
   }
-  hambMenu.classList.toggle("active");
   prodFilterEle.classList.toggle("visible");
 });
 
 overlay.addEventListener("click", () => {
+  searchBar.classList.remove("hide");
+  hambMenu.src = "assets/menu.png";
+  hambMenu.classList.add("active");
   prodFilterEle.classList.remove("visible");
   overlay.classList.remove("active");
 });
