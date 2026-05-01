@@ -131,11 +131,12 @@ function sortProducts(btnEle, btnsArr) {
 let searchText = "";
 let searchFlag = false;
 
-const searchButton = document.querySelector("#btnS");
+const searchForm = document.querySelector("#searchBar");
 
-searchButton.addEventListener("click", () => searchByNameOrCategory());
+searchForm.addEventListener("submit", (e) => searchByNameOrCategory(e));
 
-function searchByNameOrCategory() {
+function searchByNameOrCategory(e) {
+  e.preventDefault();
   const inputSearchBox = document.querySelector("#inputSearch");
   const inputVal = inputSearchBox.value.toLowerCase();
   if (inputVal === "") {
