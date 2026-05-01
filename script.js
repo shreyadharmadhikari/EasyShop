@@ -39,9 +39,11 @@ function displayByFilter(filteredProducts) {
                     `;
 
     productsGrid.appendChild(prodDiv);
-    attachAddToCartEventListener();
-    attachBuyNowEventListener();
   }
+  // FIX: Attach event listeners ONCE after all products are rendered
+  // Previously these were called inside the loop, causing duplicate listeners
+  attachAddToCartEventListener();
+  attachBuyNowEventListener();
 }
 
 const filterByCategoryButtons = [...document.querySelectorAll(".category")];
