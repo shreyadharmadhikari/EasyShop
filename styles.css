@@ -25,7 +25,7 @@ main {
   background-color: #262626;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   box-shadow: 0px 1px 2px 0px #262626e8;
   z-index: 100;
 }
@@ -170,7 +170,7 @@ main {
 }
 
 #product-filters {
-  padding-top: 10vh;
+  padding-top: 4.3rem;
   width: fit-content;
   margin: 0rem auto;
   display: flex;

@@ -131,6 +131,18 @@ function sortProducts(btnEle, btnsArr) {
 let searchText = "";
 let searchFlag = false;
 
+const inputSearchBox = document.querySelector("#inputSearch");
+
+inputSearchBox.addEventListener("blur", () => {
+  const inputValue = inputSearchBox.value;
+
+  if (inputValue === "" || inputValue.trim() === "") {
+    searchText = "";
+    searchFlag = false;
+  }
+  updatedProductsList();
+});
+
 const searchForm = document.querySelector("#searchBar");
 
 searchForm.addEventListener("submit", (e) => searchByNameOrCategory(e));
